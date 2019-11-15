@@ -1,0 +1,19 @@
+Given a set, e. g. {1, 2, 3}, return all of its subsets.
+
+def all_subset(S):
+    list_S = list(S)
+    n = len(list_S)
+    res = []
+    def helper(subset, i):
+        if i == n:
+            res.append(subset)
+        else:
+            helper(subset | {list_S[i]}, i + 1)
+            helper(subset, i + 1)
+    helper(set(), 0)
+    return res
+
+if __name__ == '__main__':
+    S = {1, 2, 3}
+    for x in sorted(all_subset(S), key=len):
+        print(x)
